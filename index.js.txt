@@ -1,0 +1,18 @@
+import express from 'express';
+
+const app = express();
+
+app.get('/', (req, res) => {
+  const userAgent = req.get('User-Agent') || '';
+  if (!userAgent.includes('v2ray') && !userAgent.includes('your-app')) {
+    return res.status(403).send('Access Denied');
+  }
+  res.json({
+    vless: 'vless://uuid@91.99.178.163:443?encryption=none&security=tls&type=ws&host=your-service.run.app&path=/ws#YourServer'
+  });
+});
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
