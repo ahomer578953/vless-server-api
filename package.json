@@ -1,13 +1,11 @@
 {
-  "name": "vless-server-api",
+  "name": "vless-handshake-api",
   "version": "1.0.0",
-  "description": "Simple VLESS server API using Node.js",
+  "description": "Simple handshake API for VLESS clients",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
   }
