@@ -1,21 +1,13 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+
+// Cloud Run يعمل على منفذ يأتي من المتغير PORT
+const port = process.env.PORT || 8080;
 
 app.get('/', (req, res) => {
-  res.send('VLESS Server API is running 🚀');
-});
-
-app.get('/generate', (req, res) => {
-  const injectorData = {
-    message: "Here is your injection data",
-    uuid: "abcdef12-3456-7890-abcd-ef1234567890",
-    flow: "xtls-rprx-vision",
-    additionalInfo: "You can customize this object"
-  };
-  res.json(injectorData);
+  res.send('VLESS Handshake API ✅');
 });
 
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+  console.log(`Server is listening on port ${port}`);
 });
