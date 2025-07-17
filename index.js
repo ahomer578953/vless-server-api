@@ -1,26 +1,22 @@
 const express = require('express');
-const axios = require('axios');
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
-// نقطة البداية للتأكد من أن السيرفر يعمل
+app.get('/check-hetzner', (req, res) => {
+  // تحقق بسيط: ممكن تضيف تحقق من IP أو رمز أو غيره
+  const wsURL = 'wss://your-hetzner-domain/ws'; // ← عدّل هذا بالرابط الصحيح
+
+  return res.status(200).json({
+    status: 'ok',
+    forward: wsURL
+  });
+});
+
 app.get('/', (req, res) => {
-  res.send('VLESS Server API is running 🚀');
+  res.send('OK: VLESS API');
 });
 
-// نقطة تحقق من الاتصال بسيرفر Hetzner
-app.get('/check-hetzner', async (req, res) => {
-  try {
-    const response = await axios.get('http://91.99.178.163');
-    res.send(`Hetzner response status: ${response.status}`);
-  } catch (error) {
-    res.status(500).send(`Failed to connect to Hetzner server: ${error.message}`);
-  }
-});
-
-// تشغيل الخادم
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`API running on port ${port}`);
 });
 
